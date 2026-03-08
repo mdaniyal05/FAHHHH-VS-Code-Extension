@@ -6,7 +6,7 @@ function playFahhhh(soundPath: string): void {
   const cmds: Partial<Record<NodeJS.Platform, string>> = {
     darwin: `afplay "${soundPath}"`,
     win32: `powershell -c (Add-Type -AssemblyName presentationCore; $p = New-Object System.Windows.Media.MediaPlayer; $p.Open('${soundPath}'); $p.Play(); Start-Sleep 3)`,
-    linux: `mpg123 "${soundPath}" 2>/dev/null || ffplay -nodisp -autoexit "${soundPath}" 2>/dev/null`,
+    linux: `paplay "${soundPath}" 2>/dev/null || mpg123 "${soundPath}" 2>/dev/null`,
   };
   const cmd = cmds[process.platform];
   if (cmd) {
